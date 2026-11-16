@@ -310,6 +310,7 @@ h3 { font-family: var(--serif); font-weight: 600; margin: 0 0 6px; line-height: 
 .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }   /* 3 per row */
 .cert { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
 .cert img { aspect-ratio: 4 / 3; object-fit: cover; background: #fff; }
+.cert img.portrait { object-position: top; }   /* tall certificates: show the top part with the title */
 .cert figcaption { padding: 14px 16px; }
 .cert figcaption b { display: block; }
 .cert figcaption span { color: var(--muted); font-size: 14px; }
