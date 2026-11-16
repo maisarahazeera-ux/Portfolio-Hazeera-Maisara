@@ -352,12 +352,43 @@ footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted)
 .detail p, .detail ul { color: var(--muted); margin: 0; }
 .detail .meta { font-size: 14px; }
 
-/* Screenshots: one big on the left, two stacked on the right */
-.shots { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: 10px; margin-top: 20px; }
-.shots img { border-radius: 10px; border: 1px solid var(--line); width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.shots img:first-child { grid-row: span 2; }
-.shots.two { grid-template-columns: 1fr 1fr; }        /* projects with only 2 screenshots: side by side */
-.shots.two img:first-child { grid-row: auto; }
+
+/* Screenshot slider inside the pop-ups */
+.slider { position: relative; margin-top: 20px; }
+
+/* The row of slides scrolls sideways; scroll-snap makes it stop exactly on one slide.
+   This also gives swipe on phones and trackpads for free. */
+.slides {
+  display: flex; overflow-x: auto;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  align-items: flex-start;                /* each slide keeps its own height */
+  scrollbar-width: none;                  /* hide the scrollbar (Firefox) */
+}
+.slides::-webkit-scrollbar { display: none; }   /* hide the scrollbar (Chrome, Edge, Safari) */
+
+/* Each slide takes the full width */
+.slide { flex: 0 0 100%; margin: 0; scroll-snap-align: start; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.slide img { width: 100%; height: auto; max-height: 65vh; object-fit: contain; display: block; }   /* tall images (like a poster) shrink to fit the screen */
+.slide figcaption { padding: 10px 14px; font-size: 14px; color: var(--muted); }
+
+/* Round ‹ › buttons on the left and right of the image */
+.slide-btn {
+  position: absolute; top: 42%; transform: translateY(-50%);
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid var(--line); background: rgba(43, 10, 16, .85); color: var(--cream);
+  font-size: 28px; line-height: 1; cursor: pointer;
+}
+.slide-btn:hover { background: var(--cream); color: var(--ink); }
+.slide-btn.prev { left: 10px; }
+.slide-btn.next { right: 10px; }
+.slide-btn:disabled { opacity: .3; cursor: default; }   /* faded on the first / last slide */
+
+/* Dots and "1 / 5" under the slider */
+.slider-foot { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 12px; }
+.dots { display: flex; gap: 8px; }
+.dot { width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 0; background: var(--line); cursor: pointer; transition: width .2s, background .2s; }
+.dot.active { width: 24px; border-radius: 999px; background: var(--accent); }   /* the current slide's dot becomes a pill */
+.count { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* × close button; sticky so it stays visible while scrolling the pop-up */
 .close { position: sticky; top: 0; float: right; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg); color: var(--text); font-size: 22px; line-height: 1; cursor: pointer; }
@@ -388,8 +419,7 @@ footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted)
   .lanyard { --strap: 90px; }
 
   .cert-grid { grid-template-columns: 1fr 1fr; }
-  .shots, .shots.two { grid-template-columns: 1fr; }
-  .shots img:first-child { grid-row: auto; }
+  .slide-btn { width: 36px; height: 36px; font-size: 24px; }   /* smaller arrows on phone */
   .detail { padding: 22px; }
 }
 
@@ -406,4 +436,5 @@ footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted)
   html { scroll-behavior: auto; }
   .track { animation: none; }
   .project { transition: none; }
+  .slides { scroll-behavior: auto; }
 }

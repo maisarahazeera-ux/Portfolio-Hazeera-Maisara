@@ -2,7 +2,7 @@
    script.js: makes the page interactive
    1. Phone menu (☰)
    2. Skill filter tabs
-   3. Project detail pop-ups
+   3. Project detail pop-ups (+ 3b. screenshot sliders)
    4. Contact form
    5. Footer year
    6. Stretchy lanyard ID card
@@ -67,7 +67,10 @@ tabs.forEach(tab => {
 document.querySelectorAll('[data-open]').forEach(button => {
   button.addEventListener('click', () => {
     // showModal() opens the <dialog> on top of the page and darkens the background
-    document.getElementById(button.dataset.open).showModal();
+    const dialog = document.getElementById(button.dataset.open);
+    dialog.showModal();
+    // Start every screenshot slider from the first picture
+    dialog.querySelectorAll('.slides').forEach(track => track.scrollTo({ left: 0, behavior: 'instant' }));
   });
 });
 
@@ -81,6 +84,64 @@ document.querySelectorAll('dialog.detail').forEach(dialog => {
     if (event.target === dialog) dialog.close();
   });
   // Pressing Esc also closes it; the browser does that by itself
+});
+
+
+// ===== 3b. Screenshot sliders inside the pop-ups =====
+// The slides scroll sideways (CSS scroll-snap), so swiping already works.
+// This adds the ‹ › buttons, the dots, the "1 / 5" counter and arrow keys.
+
+document.querySelectorAll('.slider').forEach(slider => {
+  const track = slider.querySelector('.slides');           // the row that scrolls
+  const slides = slider.querySelectorAll('.slide');
+  const prev = slider.querySelector('.prev');
+  const next = slider.querySelector('.next');
+  const dotsBox = slider.querySelector('.dots');
+  const count = slider.querySelector('.count');
+
+  // Make one dot per slide
+  const dots = [...slides].map((slide, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot';
+    dot.setAttribute('aria-label', `Show screenshot ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dotsBox.appendChild(dot);
+    return dot;
+  });
+
+  // Which slide is showing now? (how far it has scrolled ÷ one slide's width)
+  function current() {
+    if (!track.clientWidth) return 0;                      // pop-up still closed: width is 0
+    return Math.round(track.scrollLeft / track.clientWidth);
+  }
+
+  // Scroll to slide number i (0 = first)
+  function goTo(i) {
+    const last = slides.length - 1;
+    i = Math.max(0, Math.min(last, i));                    // stay within the first and last slide
+    track.scrollTo({ left: i * track.clientWidth });
+  }
+
+  // Update the dots, counter and buttons to match the current slide
+  function update() {
+    const i = current();
+    dots.forEach((dot, d) => dot.classList.toggle('active', d === i));
+    count.textContent = `${i + 1} / ${slides.length}`;
+    prev.disabled = i === 0;                               // can't go back from the first
+    next.disabled = i === slides.length - 1;               // can't go forward from the last
+  }
+
+  prev.addEventListener('click', () => goTo(current() - 1));
+  next.addEventListener('click', () => goTo(current() + 1));
+  track.addEventListener('scroll', update);                // also runs after a swipe
+
+  // Arrow keys work while this slider's pop-up is open
+  slider.closest('dialog').addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft')  goTo(current() - 1);
+    if (event.key === 'ArrowRight') goTo(current() + 1);
+  });
+
+  update();
 });
 
 
