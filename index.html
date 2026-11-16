@@ -1,21 +1,30 @@
 <!DOCTYPE html>
+<!-- index.html: the content and structure of the page.
+     How it looks is in style.css; what it does when clicked is in script.js. -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- Info for the browser, not shown on the page -->
+  <meta charset="UTF-8">   <!-- supports all letters and symbols -->
+  <!-- Makes the page fit phone screens instead of showing a tiny desktop version -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Text on the browser tab -->
   <title>Hazeera Maisara | Web Developer & UI Designer</title>
+  <!-- Short summary that Google shows in search results -->
   <meta name="description" content="Portfolio of Hazeera Maisara (Zeera), web developer and UI designer from Johor Bahru, Malaysia.">
+  <!-- Load the 3 fonts from Google Fonts (preconnect makes it a bit faster) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Connect the CSS file -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== NAV ===== -->
+  <!-- ===== NAV: the bar at the top. Each link jumps to a section by its id (#about = id="about") ===== -->
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="logo" href="#home">Zeera</a>
+      <!-- ☰ button, only shown on phone; its 3 <span>s are the 3 lines -->
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
       </button>
@@ -32,9 +41,9 @@
   </header>
 
   <main>
-    <!-- ===== HERO ===== -->
+    <!-- ===== HERO: the first thing visitors see ===== -->
     <section id="home" class="hero">
-      <div class="bokeh" aria-hidden="true"></div>
+      <div class="bokeh" aria-hidden="true"></div>   <!-- blurry red lights in the background -->
       <div class="wrap hero-grid">
         <div>
           <p class="hello">Welcome to my portfolio</p>
@@ -48,7 +57,8 @@
           </div>
         </div>
 
-        <!-- Swinging ID card on a lanyard -->
+        <!-- Stretchy ID card on a lanyard. aria-hidden: screen readers skip it because it's decoration.
+             script.js (section 6) makes it draggable. -->
         <div class="lanyard-area" aria-hidden="true">
           <p class="drag-hint">Grab the card and pull it</p>
           <div class="lanyard">
@@ -58,19 +68,20 @@
               <div class="id-top"><b>Zeera</b><small>Web Dev &amp; UI</small></div>
               <div class="id-photo">
                 <span class="id-initials">Z</span>
-                <!-- To use your photo: save it as images/me.jpg, then remove the comment marks around the next line -->
-                <!-- <img src="images/me.jpg" alt=""> -->
+                <!-- Photo: the "Z" behind it shows if the image is missing.
+                     Temporary illustration for now; to change it, replace images/me.jpg with your real photo. -->
+                <img src="images/me.jpg" alt="">
               </div>
               <p class="id-name">Hazeera Maisara</p>
               <p class="id-role">Web Developer &amp; UI Designer</p>
-              <div class="id-code"></div>
+              <div class="id-code"></div>   <!-- fake barcode, drawn in CSS -->
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== SCROLLING STRIP ===== -->
+    <!-- ===== SCROLLING STRIP: the words are repeated twice so the loop looks endless ===== -->
     <div class="marquee" aria-hidden="true">
       <div class="track">
         <span>web developer</span><span>UI designer</span><span>ready for the next project?</span>
@@ -80,7 +91,7 @@
       </div>
     </div>
 
-    <!-- ===== ABOUT ===== -->
+    <!-- ===== ABOUT: bio and education (left), interests and languages (right) ===== -->
     <section id="about">
       <div class="wrap">
         <h2>About Me</h2>
@@ -110,7 +121,8 @@
       </div>
     </section>
 
-    <!-- ===== SKILLS (with filter tabs) ===== -->
+    <!-- ===== SKILLS: each tab has data-filter, each skill has data-cat.
+         script.js (section 2) shows only skills whose data-cat matches the clicked tab. ===== -->
     <section id="skills">
       <div class="wrap">
         <h2>Skills &amp; Tools</h2>
@@ -152,7 +164,7 @@
       </div>
     </section>
 
-    <!-- ===== PROJECTS ===== -->
+    <!-- ===== PROJECTS: 4 cards. Each "View details" button has data-open="..." = the id of its pop-up at the bottom of this file ===== -->
     <section id="projects">
       <div class="wrap">
         <h2>Projects</h2>
@@ -203,7 +215,7 @@
       </div>
     </section>
 
-    <!-- ===== EXPERIENCE ===== -->
+    <!-- ===== EXPERIENCE: a timeline; the line and dots are drawn in CSS ===== -->
     <section id="experience">
       <div class="wrap">
         <h2>Experience</h2>
@@ -233,7 +245,7 @@
       </div>
     </section>
 
-    <!-- ===== CERTIFICATES ===== -->
+    <!-- ===== CERTIFICATES: <figure> = image + caption. Awards without a certificate image use a red "award-face" box ===== -->
     <section id="certificates">
       <div class="wrap">
         <h2>Certificates &amp; Awards</h2>
@@ -248,7 +260,7 @@
       </div>
     </section>
 
-    <!-- ===== CONTACT ===== -->
+    <!-- ===== CONTACT: your links (left) and a message form (right) ===== -->
     <section id="contact">
       <div class="wrap contact-grid">
         <div>
@@ -272,11 +284,13 @@
     </section>
   </main>
 
+  <!-- ===== FOOTER: the year is filled in by script.js ===== -->
   <footer>
     <div class="wrap">© <span id="year">2026</span> Hazeera Maisara. Built with HTML, CSS and JavaScript.</div>
   </footer>
 
-  <!-- ===== PROJECT DETAILS (pop-ups) ===== -->
+  <!-- ===== PROJECT DETAILS: <dialog> pop-ups, hidden until a "View details" button opens them.
+       Each one: title, screenshots, Overview, Problem, Solution, Result, tools. ===== -->
   <dialog id="d-eoperasi" class="detail">
     <button class="close" aria-label="Close">×</button>
     <h3>e-Operasi</h3>
@@ -358,6 +372,7 @@
     <ul class="tags"><li>Java</li><li>Android Studio</li></ul>
   </dialog>
 
+  <!-- Load the JavaScript last, after all the HTML above exists -->
   <script src="script.js"></script>
 </body>
 </html>
