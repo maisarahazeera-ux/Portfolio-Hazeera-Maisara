@@ -196,8 +196,7 @@
           </article>
 
           <article class="project">
-            <!-- No screenshot on purpose: the live system holds real school data -->
-            <div class="no-img" aria-hidden="true"><b>Lawatan</b><span>School trip system · PPD Johor Bahru</span></div>
+            <img src="images/lawatan-summary.jpg" alt="Lawatan Dashboard summary page with trip totals and monthly chart" loading="lazy" width="1400" height="762">
             <div class="project-body">
               <h3>Lawatan Dashboard</h3>
               <p>Schools apply for trips and track their status online; PPD officers review, approve and issue signed forms from one dashboard.</p>
@@ -376,7 +375,22 @@
     <button class="close" aria-label="Close">×</button>
     <h3>Lawatan Dashboard</h3>
     <p class="meta">School trip application system · PPD Johor Bahru · 2026 · Designed and built solo</p>
-    <p class="meta">Screenshots and source code are not public because the system holds real school data. <a href="https://lawatan-dashboard.onrender.com" target="_blank" rel="noopener">Open the live site</a></p>
+    <p class="meta">Source code is private because the system holds real school data; officer emails and file numbers are blurred in the screenshots. <a href="https://lawatan-dashboard.onrender.com" target="_blank" rel="noopener">Open the live site</a></p>
+    <!-- Screenshot slider: swipe, use the ‹ › buttons, the dots, or the arrow keys. -->
+    <div class="slider" role="region" aria-roledescription="carousel" aria-label="Lawatan Dashboard screenshots">
+      <div class="slides">
+          <figure class="slide"><img src="images/lawatan-summary.jpg" alt="Summary page with KPIs, status donut, trips per month and top destinations" loading="lazy"><figcaption>Summary (PPD): trips, pupils, buses and processing time at a glance</figcaption></figure>
+          <figure class="slide"><img src="images/lawatan-status.jpg" alt="Check status home page with search, totals, upcoming trips and how to apply" loading="lazy"><figcaption>Check status: the home page for schools</figcaption></figure>
+          <figure class="slide"><img src="images/lawatan-search.jpg" alt="Search results listing schools that match a partial name" loading="lazy"><figcaption>Search: partial names work, results appear as you type</figcaption></figure>
+          <figure class="slide"><img src="images/lawatan-result.jpg" alt="One school's trips with dates, places, buses, pupils and status" loading="lazy"><figcaption>Result: every trip for a school, with its status</figcaption></figure>
+          <figure class="slide"><img src="images/lawatan-calendar.jpg" alt="Monthly calendar of school trips with a day's trips listed on the right" loading="lazy"><figcaption>Calendar: click a day to see its trips</figcaption></figure>
+          <figure class="slide"><img src="images/lawatan-apply.jpg" alt="Online trip application form with school and trip sections" loading="lazy"><figcaption>Apply: the form fills school details from the school code</figcaption></figure>
+          <figure class="slide"><img src="images/lawatan-ppd.jpg" alt="PPD applications table with status dropdowns and signed form actions" loading="lazy"><figcaption>Applications (PPD): change status and manage signed approval forms</figcaption></figure>
+      </div>
+      <button class="slide-btn prev" aria-label="Previous screenshot">&#8249;</button>
+      <button class="slide-btn next" aria-label="Next screenshot">&#8250;</button>
+      <div class="slider-foot"><div class="dots"></div><span class="count"></span></div>
+    </div>
     <h4>Overview</h4>
     <p>A web system for school trip applications in the Johor Bahru district. Schools apply and check their status online, and PPD officers manage every application from one dashboard that reads live from Google Sheets.</p>
     <h4>Problem</h4>
