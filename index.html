@@ -98,7 +98,7 @@
         <p class="lead">I like turning messy information into screens that people can use without a manual.</p>
         <div class="about-grid">
           <div class="panel">
-            <p>I'm Zeera, from Johor Bahru. During my industrial training at the Johor Bahru District Education Office, I designed and built two web apps for the officers there: a teacher information system and a live school capacity dashboard.</p>
+            <p>I'm Zeera, from Johor Bahru. During my industrial training at the Johor Bahru District Education Office, I designed and built three web apps for the officers there: a teacher information system, a live school capacity dashboard and an online school trip application system.</p>
             <p>My degree is in Big Data, so I'm comfortable with the data side too. I enjoy the whole journey: talking to users, sketching layouts, writing the code, and refining until it feels simple.</p>
             <h3>Education</h3>
             <ul class="edu">
@@ -142,6 +142,9 @@
           <li data-cat="frontend">JavaScript</li>
           <li data-cat="frontend">HTML</li>
           <li data-cat="frontend">CSS</li>
+          <li data-cat="backend">Node.js</li>
+          <li data-cat="backend">Express</li>
+          <li data-cat="backend">Google Apps Script</li>
           <li data-cat="backend">C# .NET Web API</li>
           <li data-cat="backend">Entity Framework Core</li>
           <li data-cat="backend">Flask</li>
@@ -158,6 +161,7 @@
           <li data-cat="data">SQL</li>
           <li data-cat="tools">Git &amp; GitHub</li>
           <li data-cat="tools">Docker</li>
+          <li data-cat="tools">Render</li>
           <li data-cat="tools">VS Code</li>
           <li data-cat="tools">Android Studio</li>
         </ul>
@@ -168,7 +172,7 @@
     <section id="projects">
       <div class="wrap">
         <h2>Projects</h2>
-        <p class="lead">Things I've designed and built, from government web apps to my final year dashboard.</p>
+        <p class="lead">Things I've designed and built, from web apps for a government education office to my final year dashboard.</p>
         <div class="project-grid">
 
           <article class="project">
@@ -188,6 +192,17 @@
               <p>A live dashboard that shows which of 98 primary schools are over capacity for Year 1.</p>
               <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>GitHub Pages</li></ul>
               <button class="link-btn" data-open="d-idme">View details</button>
+            </div>
+          </article>
+
+          <article class="project">
+            <!-- No screenshot on purpose: the live system holds real school data -->
+            <div class="no-img" aria-hidden="true"><b>Lawatan</b><span>School trip system · PPD Johor Bahru</span></div>
+            <div class="project-body">
+              <h3>School Trip Application System</h3>
+              <p>Schools apply for trips and track their status online; PPD officers review, approve and issue signed forms from one dashboard.</p>
+              <ul class="tags"><li>Node.js</li><li>Express</li><li>JavaScript</li><li>Apps Script</li></ul>
+              <button class="link-btn" data-open="d-lawatan">View details</button>
             </div>
           </article>
 
@@ -227,9 +242,10 @@
             <ul>
               <li>Designed and built e-Operasi, a full-stack teacher information web app.</li>
               <li>Designed and built a live Year 1 capacity dashboard used in meetings.</li>
+              <li>Designed and built an online school trip application system, so schools can apply and check their status without calling the office.</li>
               <li>Helped officers with Year 1 and Form 1 placement and appeals in IDME, student transfers in ePMJ, and finance data entry in iGFMAS.</li>
             </ul>
-            <ul class="tags"><li>React</li><li>.NET</li><li>PostgreSQL</li><li>JavaScript</li></ul>
+            <ul class="tags"><li>React</li><li>.NET</li><li>PostgreSQL</li><li>JavaScript</li><li>Node.js</li></ul>
           </li>
           <li>
             <span class="when">2021 – 2026</span>
@@ -354,6 +370,28 @@
     <h4>Result</h4>
     <p>32 of 98 schools over capacity for the 2027 intake (14,928 applications) now appear at the top of the list.</p>
     <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PapaParse</li><li>Google Sheets</li><li>GitHub Pages</li></ul>
+  </dialog>
+
+  <dialog id="d-lawatan" class="detail">
+    <button class="close" aria-label="Close">×</button>
+    <h3>School Trip Application System</h3>
+    <p class="meta">Lawatan Sekolah JB · PPD Johor Bahru · 2026 · Designed and built solo</p>
+    <p class="meta">Screenshots and source code are not public because the system holds real school data. <a href="https://lawatan-dashboard.onrender.com" target="_blank" rel="noopener">Open the live site</a></p>
+    <h4>Overview</h4>
+    <p>A web system for school trip applications in the Johor Bahru district. Schools apply and check their status online, and PPD officers manage every application from one dashboard that reads live from Google Sheets.</p>
+    <h4>Problem</h4>
+    <p>PPD tracked every trip application in a shared Google Sheet, so schools had to call or message to ask about their status, and officers had no quick overview of trips across the district.</p>
+    <h4>Solution</h4>
+    <ul>
+      <li>For schools: search by school name, code or file number (spelling variants still match), a monthly trip calendar, an online application form with document upload, and the signed approval letter to download.</li>
+      <li>For PPD officers (login required): change status with a reason, preview uploaded forms, download an auto-filled Word approval form, then upload the signed copy back.</li>
+      <li>A summary page with KPIs, trips per month, processing time, transport and top destinations, drawn with custom charts.</li>
+      <li>Google Sheets stays the database, so officers keep their usual sheet; Apps Script saves new applications and files to Google Drive.</li>
+      <li>Privacy by design: phone numbers never reach the browser and teacher names are hidden by default.</li>
+    </ul>
+    <h4>Result</h4>
+    <p>Schools now check their own application status online, and PPD reviews, approves and issues forms in one place instead of a spreadsheet and phone calls.</p>
+    <ul class="tags"><li>Node.js</li><li>Express</li><li>JavaScript</li><li>Google Apps Script</li><li>Google Sheets</li><li>JSZip</li><li>pdf.js</li><li>Render</li></ul>
   </dialog>
 
   <dialog id="d-maptd" class="detail">
